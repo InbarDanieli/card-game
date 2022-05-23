@@ -1,30 +1,9 @@
 import React, { useState } from "react";
 import "./Game.css";
 import Cards from "../cards/Cards"
+import { cardsInformation } from "../../CardsInformation";
 
-const cardsInfo = [
-  {
-    name: "inbar",
-    Key: 1,
-    flip: false
-  },
-  {
-    name: "inbar",
-    Key: 2,
-    flip: false
-  },
-  {
-    name: "omri",
-    Key: 3,
-    flip: false
-  },
-  {
-    name: "omri",
-    Key: 4,
-    flip: false
-  },
-]
-
+const cardsInfo = cardsInformation
 
 function Game() {
   const [twoCards, setTwoCards] = useState(false)
