@@ -14,8 +14,8 @@ function Cards({name, Key, Onclick, flip, flipHandler}) {
   return (
     <div className={`card`} onClick={()=> Onclick(name, Key, flip)}>
       <div className={addclass()}>
-        <div className="front">{`${Key} ${name}`}</div>
-        <div className="back">back</div>
+        <div className="front"></div>
+        <div className="back">{name + " " + Key}</div>
       </div>
     </div>
   );
