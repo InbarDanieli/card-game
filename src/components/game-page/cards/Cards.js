@@ -1,17 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Cards.css";
 
-function Cards(props) {
-  const [flip, setFlip] = useState("card-inner");
+function Cards({name, Key, Onclick, flip, flipHandler}) {
 
   function addclass() {
-    setFlip(`${flip} transform`)
+    if(flip)
+    {
+      return "card-inner transform"
+    }
+    return "card-inner"
   }
 
   return (
-    <div className={`card`} onClick={()=> props.Onclick(props.name, props.Key)}>
-      <div className={flip} onClick={addclass}>
-        <div className="front">{`${props.Key} ${props.name}`}</div>
+    <div className={`card`} onClick={()=> Onclick(name, Key, flip)}>
+      <div className={addclass()}>
+        <div className="front">{`${Key} ${name}`}</div>
         <div className="back">back</div>
       </div>
     </div>

@@ -1,46 +1,76 @@
-import React, { useEffect, useState } from "react";
-import CardCreator from "../cards-creator/CardCreator";
-import Cards from "../cards/Cards";
+import React, { useState } from "react";
 import "./Game.css";
+import Cards from "../cards/Cards"
+
+const cardsInfo = [
+  {
+    name: "inbar",
+    Key: 1,
+    flip: false
+  },
+  {
+    name: "inbar",
+    Key: 2,
+    flip: false
+  },
+  {
+    name: "omri",
+    Key: 3,
+    flip: false
+  },
+  {
+    name: "omri",
+    Key: 4,
+    flip: false
+  },
+]
+
 
 function Game() {
-  const [cardarr, setCardArr] = useState(CardCreator());
-  const [cardChoosen, setCardChoosen] = useState(false);
-  const [firstCardName, setFirstCardName] = useState("");
-  const [firstCardKey, setFirstCardKey] = useState();
-  // const [clicked, setClicked] = useState(false);
+  const [twoCards, setTwoCards] = useState(false)
+  const [info, setInfo] = useState({}) 
+  const [cards, setCards] = useState(cardsInfo)
 
-  let cards = cardarr.map((cardInfo) => (
-    <Cards
-      name={cardInfo.name}
-      Key={cardInfo.key}
-      key={cardInfo.key}
-      Onclick={clickcard}
-    />
-  ));
-  cards = cards.sort((a, b) => a.key - b.key);
-
-  function clickcard(cardName, key) {
-    if (cardChoosen) {
-      if (firstCardKey === key) {
-        return;
-      }
-
-      if (firstCardName === cardName) {
-        console.log("match!");
-      } else {
-        console.log("not match");
-      }
-      setCardChoosen(false);
-      
-    } else {
-      setCardChoosen(true);
-      setFirstCardName(cardName);
-      setFirstCardKey(key);
-    }
+  function flipCard(Key) {
+    const cardIndex = cards.findIndex((value) => value.Key === Key)
+    cards[cardIndex].flip = !cards[cardIndex].flip
+    setCards([...cards])
   }
 
-  return <div className="cards">{cards}</div>;
+  function printInfo(name, Key, flip) {
+    if (flip) {
+      return
+    }
+
+    if (!twoCards) {
+      setInfo({ name, Key })
+      setTwoCards(true)
+      flipCard(Key)
+      return
+    }
+
+    flipCard(Key)
+    if (info.name !== name) {
+      setTwoCards(false)
+      flipCard(info.Key)
+      flipCard(Key)
+    }
+    setInfo({})
+    setTwoCards(false)
+  }
+
+  return (
+    <>
+      {cards.map((info) =>
+        <Cards
+          key={info.Key}
+          Key={info.Key}
+          name={info.name}
+          flip={info.flip}
+          Onclick={(name, Key, flip) => printInfo(name, Key, flip)}
+        />)}
+    </>
+  )
 }
 
 export default Game;
