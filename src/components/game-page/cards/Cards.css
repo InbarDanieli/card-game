@@ -1,5 +1,3 @@
-body{
-}
 .card{
 width: 300px;
 height: 300px;
@@ -30,12 +28,12 @@ margin: 0 0 5% 0;
 }
 
 .front {
- background-image: url("../../po/Cat-18.svg");
+ background-image: url("../../cat-icon/Cat-18.svg");
  background-repeat: no-repeat;
 }
 
 .back {
-  background-color: #2980b9;
+  background-color:lightgray;
   color: white;
   transform: rotateY(180deg);
 }
