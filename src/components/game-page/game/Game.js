@@ -52,15 +52,17 @@ function Game() {
     flipCard(Key)
     if (info.name !== name) {
       setTwoCards(false)
-      flipCard(info.Key)
-      flipCard(Key)
+      setTimeout(() => {
+        flipCard(info.Key)
+        flipCard(Key)
+      }, 1000);
     }
     setInfo({})
     setTwoCards(false)
   }
 
   return (
-    <>
+    <div className="cards">
       {cards.map((info) =>
         <Cards
           key={info.Key}
@@ -69,7 +71,7 @@ function Game() {
           flip={info.flip}
           Onclick={(name, Key, flip) => printInfo(name, Key, flip)}
         />)}
-    </>
+    </div>
   )
 }
 
