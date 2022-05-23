@@ -1,33 +1,41 @@
-export const cardsInformation = [
-  {
-    name: "inbar",
-    Key: 1,
-    flip: false
-  },
-  {
-    name: "inbar",
-    Key: 2,
-    flip: false
-  },
-  {
-    name: "omri",
-    Key: 3,
-    flip: false
-  },
-  {
-    name: "omri",
-    Key: 4,
-    flip: false
-  },
-  {
-    name: "plop",
-    Key: 5,
-    flip: false
-  },
-  {
-    name: "plop",
-    Key: 6,
-    flip: false
-  },
-  
-]
+export function cardsInformation() {
+
+  let cardsInfo = [
+    {
+      name: "inbar",
+      flip: false,
+    },
+    {
+      name: "inbar",
+      flip: false,
+    },
+    {
+      name: "omri",
+      flip: false,
+    },
+    {
+      name: "omri",
+      flip: false,
+    },
+    {
+      name: "plop",
+      flip: false,
+    },
+    {
+      name: "plop",
+      flip: false,
+    },
+    {
+      name: "bla",
+      flip: false,
+    },
+    {
+      name: "bla",
+      flip: false,
+    },
+  ]
+  cardsInfo = cardsInfo.map((value) => ({ ...value, Key: Math.random() }))
+  cardsInfo = cardsInfo.sort((a, b) => a.Key - b.Key)
+
+  return cardsInfo
+}
