@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Game.css";
 import Cards from "../cards/Cards"
-import { cardsInformation } from "../../CardsInformation";
+import { cardsInformation } from "../../services/CardsInformation";
 
 const cardsInfo = cardsInformation
 

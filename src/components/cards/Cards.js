@@ -1,7 +1,7 @@
 import React from "react";
 import "./Cards.css";
 
-function Cards({name, Key, Onclick, flip, flipHandler}) {
+function Cards({name, Key, Onclick, flip}) {
 
   function addclass() {
     if(flip)
