@@ -7,8 +7,10 @@ const cardsInfo = cardsInformation
 
 function Game() {
   const [twoCards, setTwoCards] = useState(false)
-  const [info, setInfo] = useState({}) 
+  const [info, setInfo] = useState({})
   const [cards, setCards] = useState(cardsInfo)
+  const [score, setScore] = useState(0)
+
 
   function flipCard(Key) {
     const cardIndex = cards.findIndex((value) => value.Key === Key)
@@ -17,10 +19,12 @@ function Game() {
   }
 
   function printInfo(name, Key, flip) {
+    // click on fliped card
     if (flip) {
       return
     }
 
+    // one card has choosen 
     if (!twoCards) {
       setInfo({ name, Key })
       setTwoCards(true)
@@ -28,19 +32,27 @@ function Game() {
       return
     }
 
+    //two cards has choosen
     flipCard(Key)
+    setInfo({})
+    setTwoCards(false)
+
+    // not match
     if (info.name !== name) {
-      setTwoCards(false)
       setTimeout(() => {
         flipCard(info.Key)
         flipCard(Key)
       }, 1000);
+      return
     }
-    setInfo({})
-    setTwoCards(false)
+    // match
+    setScore(score + 1)
   }
 
   return (
+    <>
+      {score}
+      <hr/>
     <div className="cards">
       {cards.map((info) =>
         <Cards
@@ -51,6 +63,7 @@ function Game() {
           Onclick={(name, Key, flip) => printInfo(name, Key, flip)}
         />)}
     </div>
+    </>
   )
 }
 
