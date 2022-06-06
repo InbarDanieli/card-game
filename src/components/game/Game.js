@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Game.css";
-import Cards from "../cards/Cards"
+import Card from "../card/Card";
 import { cardsInformation } from "../../services/CardsInformation";
 
 const cardsInfo = cardsInformation
@@ -55,7 +55,7 @@ function Game() {
       <hr/>
     <div className="cards">
       {cards.map((info) =>
-        <Cards
+        <Card
           key={info.Key}
           Key={info.Key}
           name={info.name}
