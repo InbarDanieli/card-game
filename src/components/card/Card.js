@@ -1,7 +1,7 @@
 import React from "react";
-import "./Cards.css";
+import "./Card.css";
 
-function Cards({name, Key, Onclick, flip}) {
+function Card({name, Key, Onclick, flip}) {
 
   function addclass() {
     if(flip)
@@ -21,4 +21,4 @@ function Cards({name, Key, Onclick, flip}) {
   );
 }
 
-export default Cards;
+export default Card;
