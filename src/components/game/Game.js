@@ -3,7 +3,7 @@ import "./Game.css";
 import Card from "../card/Card";
 import { cardsInformation } from "../../services/CardsInformation";
 
-const cardsInfo = cardsInformation
+const cardsInfo = cardsInformation(4)
 
 function Game() {
   const [twoCards, setTwoCards] = useState(false)
@@ -49,20 +49,31 @@ function Game() {
     setScore(score + 1)
   }
 
+  function resetGame(cardsNumbaer) {
+    setInfo({})
+    setScore(0)
+    setTwoCards(false)
+    setCards(cardsInformation(cardsNumbaer / 2))
+
+  }
+
   return (
     <>
       {score}
-      <hr/>
-    <div className="cards">
-      {cards.map((info) =>
-        <Card
-          key={info.Key}
-          Key={info.Key}
-          name={info.name}
-          flip={info.flip}
-          Onclick={(name, Key, flip) => printInfo(name, Key, flip)}
-        />)}
-    </div>
+      <button onClick={() => resetGame(8)}>8 cards</button>
+      <button onClick={() => resetGame(16)}>16 cards</button>
+      <button onClick={() => resetGame(32)}>32 cards</button>
+      <hr />
+      <div className="cards">
+        {cards.map((info) =>
+          <Card
+            key={info.Key}
+            Key={info.Key}
+            name={info.name}
+            flip={info.flip}
+            Onclick={(name, Key, flip) => printInfo(name, Key, flip)}
+          />)}
+      </div>
     </>
   )
 }
