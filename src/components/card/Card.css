@@ -1,11 +1,11 @@
-.card{
-width: 300px;
-height: 300px;
-perspective: 600px;
-margin: 0 0 5% 0;
+.card {
+  width: 300px;
+  height: 300px;
+  perspective: 600px;
+  margin: 0 0 5% 0;
 }
 
-.card-inner{
+.card-inner {
   position: relative;
   width: 100%;
   height: 100%;
@@ -28,13 +28,12 @@ margin: 0 0 5% 0;
 }
 
 .front {
- background-image: url("../../assets/Cat-18.svg");
- background-repeat: no-repeat;
+  background-image: url("../../assets/Cat-18.svg");
+  background-repeat: no-repeat;
 }
 
 .back {
-  background-color:lightgray;
+  background-color: lightgray;
   color: white;
   transform: rotateY(180deg);
 }
-
