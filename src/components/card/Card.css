@@ -1,8 +1,7 @@
 .card {
-  width: 300px;
-  height: 300px;
-  perspective: 600px;
-  margin: 0 0 5% 0;
+  width: 100%;
+  height: 100%;
+  perspective: 1200px;
 }
 
 .card-inner {
@@ -30,6 +29,7 @@
 .front {
   background-image: url("../../assets/Cat-18.svg");
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 .back {
