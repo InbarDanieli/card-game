@@ -49,11 +49,11 @@ function Game() {
     setScore(score + 1)
   }
 
-  function resetGame(cardsNumbaer) {
+  function resetGame(cardsNumber) {
     setInfo({})
     setScore(0)
     setTwoCards(false)
-    setCards(cardsInformation(cardsNumbaer / 2))
+    setCards(cardsInformation(cardsNumber / 2))
 
   }
 
