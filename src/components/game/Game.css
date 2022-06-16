@@ -1,7 +1,21 @@
+:root {
+  --colums: 4
+}
+
 .cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 5%;
-  margin-top: 32px;
+  height: 85vh;
+  display: grid;
+  grid-template-columns: repeat(var(--colums), 1fr);
+  padding: 12px;
+  gap: 24px;
+}
+
+@media screen and (max-width: 600px) {
+  .cards {
+    height: 80vh;
+    gap: 16px;
+    padding: 12px;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
 }

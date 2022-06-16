@@ -64,7 +64,7 @@ function Game() {
       <button onClick={() => resetGame(16)}>16 cards</button>
       <button onClick={() => resetGame(32)}>32 cards</button>
       <hr />
-      <div className="cards">
+      <div className="cards" style={{"--colums": cards.length === 32 && 8}}>
         {cards.map((info) =>
           <Card
             key={info.Key}
