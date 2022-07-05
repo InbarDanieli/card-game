@@ -59,10 +59,13 @@ function Game() {
 
   return (
     <>
-      {score}
-      <button onClick={() => resetGame(8)}>8 cards</button>
-      <button onClick={() => resetGame(16)}>16 cards</button>
-      <button onClick={() => resetGame(32)}>32 cards</button>
+    <div className="navbar">
+      <span className="scoreboard">{score}</span>
+      cards:
+      <button className="cardsAmountButton" onClick={() => resetGame(8)}>8</button>
+      <button className="cardsAmountButton" onClick={() => resetGame(16)}>16</button>
+      <button className="cardsAmountButton" onClick={() => resetGame(32)}>32</button>
+      </div>
       <hr />
       <div className="cards" style={{"--colums": cards.length === 32 && 8}}>
         {cards.map((info) =>

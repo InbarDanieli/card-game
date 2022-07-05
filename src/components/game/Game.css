@@ -6,8 +6,47 @@
   height: 85vh;
   display: grid;
   grid-template-columns: repeat(var(--colums), 1fr);
-  padding: 12px;
+  padding: 1%;
   gap: 24px;
+}
+.navbar{
+display: flex;
+flex-direction: row;
+padding: 12px 20px;
+align-items: center;
+justify-content: center;
+gap: 16px;
+font-size: 24px;
+}
+
+.scoreboard{
+  margin-right: auto;
+}
+
+.cardsAmountButton{
+  background: none;
+  font-size: 20px;
+  padding: 8px 30px 8px;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+}
+
+.cardsAmountButton::after {
+  content: "";
+  background-color: rgb(183, 224, 237);
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 4px;
+  left: 4px;
+  transition: 0.2s;
+}
+
+.cardsAmountButton:hover::after {
+  top: 0px;
+  left: 0px;
 }
 
 @media screen and (max-width: 600px) {
