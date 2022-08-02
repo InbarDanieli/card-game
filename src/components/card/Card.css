@@ -36,4 +36,12 @@
   background-color: lightgray;
   color: white;
   transform: rotateY(180deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.catImage {
+  height: 80%;
+  width: 90%;
 }

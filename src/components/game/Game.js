@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Game.css";
 import Card from "../card/Card";
 import { cardsInformation } from "../../services/CardsInformation";
 
-const cardsInfo = cardsInformation(4)
 
 function Game() {
   const [twoCards, setTwoCards] = useState(false)
   const [info, setInfo] = useState({})
-  const [cards, setCards] = useState(cardsInfo)
   const [score, setScore] = useState(0)
-
-
+  const [cards, setCards] = useState([])
+  const [catArr, setCatArr] = useState([])
+  useEffect(() => {
+    fetch("https://cataas.com/api/cats?tags=cute")
+      .then((res) => res.json())
+      .then((res) => res.filter((cat) => !(cat.tags.includes("gif"))))
+      .then((res) => { setCatArr(res); setCards(cardsInformation(4, res)) })
+    }, [])
+    
   function flipCard(Key) {
     const cardIndex = cards.findIndex((value) => value.Key === Key)
     cards[cardIndex].flip = !cards[cardIndex].flip
@@ -53,26 +58,27 @@ function Game() {
     setInfo({})
     setScore(0)
     setTwoCards(false)
-    setCards(cardsInformation(cardsNumber / 2))
+    setCards(cardsInformation(cardsNumber / 2, catArr))
 
   }
 
   return (
     <>
-    <div className="navbar">
-      <span className="scoreboard">{score}</span>
-      cards:
-      <button className="cardsAmountButton" onClick={() => resetGame(8)}>8</button>
-      <button className="cardsAmountButton" onClick={() => resetGame(16)}>16</button>
-      <button className="cardsAmountButton" onClick={() => resetGame(32)}>32</button>
+      <div className="navbar">
+        <span className="scoreboard">{score}</span>
+        cards:
+        <button className="cardsAmountButton" onClick={() => resetGame(8)}>8</button>
+        <button className="cardsAmountButton" onClick={() => resetGame(16)}>16</button>
+        <button className="cardsAmountButton" onClick={() => resetGame(32)}>32</button>
       </div>
       <hr />
-      <div className="cards" style={{"--colums": cards.length === 32 && 8}}>
+      <div className="cards" style={{ "--colums": cards.length === 32 && 8 }}>
         {cards.map((info) =>
           <Card
             key={info.Key}
             Key={info.Key}
             name={info.name}
+            imageID = {info.imageID}
             flip={info.flip}
             Onclick={(name, Key, flip) => printInfo(name, Key, flip)}
           />)}
