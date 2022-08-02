@@ -6,7 +6,7 @@
   height: 85vh;
   display: grid;
   grid-template-columns: repeat(var(--colums), 1fr);
-  padding: 1%;
+  margin: 1%;
   gap: 24px;
 }
 .navbar{
@@ -24,6 +24,7 @@ font-size: 24px;
 }
 
 .cardsAmountButton{
+  font-family: 'Roboto Mono', monospace;
   background: none;
   font-size: 20px;
   padding: 8px 30px 8px;
