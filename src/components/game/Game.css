@@ -9,21 +9,43 @@
   margin: 1%;
   gap: 24px;
 }
-.navbar{
-display: flex;
-flex-direction: row;
-padding: 12px 20px;
-align-items: center;
-justify-content: center;
-gap: 16px;
-font-size: 24px;
+
+.navbar {
+  display: flex;
+  flex-direction: row;
+  padding: 12px 20px;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  font-size: 24px;
 }
 
-.scoreboard{
+.scoreboard {
   margin-right: auto;
 }
 
-.cardsAmountButton{
+.buttonsContainer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  gap: 6px;
+  height: 32px;
+  overflow: hidden;
+  /* transition: all 2s; */
+}
+
+.buttonsContainer:hover {
+  height: max-content;
+}
+
+.cardsText {
+  border-bottom: 2px solid black;
+}
+
+.cardsAmountButton {
   font-family: 'Roboto Mono', monospace;
   background: none;
   font-size: 20px;
@@ -49,6 +71,7 @@ font-size: 24px;
   top: 0px;
   left: 0px;
 }
+
 
 @media screen and (max-width: 600px) {
   .cards {

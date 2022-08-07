@@ -15,8 +15,8 @@ function Game() {
       .then((res) => res.json())
       .then((res) => res.filter((cat) => !(cat.tags.includes("gif"))))
       .then((res) => { setCatArr(res); setCards(cardsInformation(4, res)) })
-    }, [])
-    
+  }, [])
+
   function flipCard(Key) {
     const cardIndex = cards.findIndex((value) => value.Key === Key)
     cards[cardIndex].flip = !cards[cardIndex].flip
@@ -63,27 +63,28 @@ function Game() {
   }
 
   return (
-    <>
+    <div className="fullPageContainer">
       <div className="navbar">
         <span className="scoreboard">{score}</span>
-        cards:
-        <button className="cardsAmountButton" onClick={() => resetGame(8)}>8</button>
-        <button className="cardsAmountButton" onClick={() => resetGame(16)}>16</button>
-        <button className="cardsAmountButton" onClick={() => resetGame(32)}>32</button>
+        <div className="buttonsContainer">
+          <span className="cardsText">cards</span>
+          <button className="cardsAmountButton" onClick={() => resetGame(8)}>8</button>
+          <button className="cardsAmountButton" onClick={() => resetGame(16)}>16</button>
+          <button className="cardsAmountButton" onClick={() => resetGame(32)}>32</button>
+        </div>
       </div>
-      <hr />
       <div className="cards" style={{ "--colums": cards.length === 32 && 8 }}>
         {cards.map((info) =>
           <Card
             key={info.Key}
             Key={info.Key}
             name={info.name}
-            imageID = {info.imageID}
+            imageID={info.imageID}
             flip={info.flip}
             Onclick={(name, Key, flip) => printInfo(name, Key, flip)}
           />)}
       </div>
-    </>
+    </div>
   )
 }
 
