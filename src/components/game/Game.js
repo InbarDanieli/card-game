@@ -70,6 +70,7 @@ function Game() {
     setTwoCards(false)
     setCards(cardsInformation(cardsNumber / 2, catArr))
     setPlayerScores([0, 0])
+    setPlayer(0)
   }
 
   return (
