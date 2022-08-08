@@ -12,7 +12,7 @@ function Card({ name, Key, Onclick, flip, imageID }) {
     <div className={`card`} onClick={() => Onclick(name, Key, flip)}>
       <div className={addclass()}>
         <div className="front"></div>
-        <div className="back" style={{}}>
+        <div className="back" style={{background: `url(https://cataas.com/cat/${imageID})`}}>
           {/* {name + " " + Key} */}
         <img className="catImage" src={`https://cataas.com/cat/${imageID}`} alt="cute"></img>
         </div>
