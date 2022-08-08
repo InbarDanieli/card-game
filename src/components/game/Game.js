@@ -10,6 +10,8 @@ function Game() {
   const [score, setScore] = useState(0)
   const [cards, setCards] = useState([])
   const [catArr, setCatArr] = useState([])
+  const [player, setPlayer] = useState(0)
+  const [playerScores, setPlayerScores] = useState([0, 0])
   useEffect(() => {
     fetch("https://cataas.com/api/cats?tags=cute")
       .then((res) => res.json())
@@ -48,10 +50,18 @@ function Game() {
         flipCard(info.Key)
         flipCard(Key)
       }, 1000);
+      setPlayer(player === 0 ? 1 : 0)
       return
     }
     // match
     setScore(score + 1)
+    playerScores[player]++
+    setPlayerScores([...playerScores])
+
+    // end of the game
+    cards.reduce((prev, curr) => prev + !curr.flip, 0) === 0 && setTimeout(() => {
+      console.log("done");
+    }, 1000);
   }
 
   function resetGame(cardsNumber) {
@@ -59,15 +69,19 @@ function Game() {
     setScore(0)
     setTwoCards(false)
     setCards(cardsInformation(cardsNumber / 2, catArr))
-
+    setPlayerScores([0, 0])
   }
 
   return (
     <div className="fullPageContainer">
       <div className="navbar">
-        <span className="scoreboard">{score}</span>
+        {/* <span className="scoreboard">{score}</span> */}
+        <div className="playercoresContainer">
+        <div className={`${player === 0 ? "choosen" : ""}`}>player 1</div>
+        <div className={`${player === 1 ? "choosen" : ""}`}>player 2</div>
+        </div>
         <div className="buttonsContainer">
-          <span className="cardsText">cards</span>
+          {/* <span className="cardsText">cards</span> */}
           <button className="cardsAmountButton" onClick={() => resetGame(8)}>8</button>
           <button className="cardsAmountButton" onClick={() => resetGame(16)}>16</button>
           <button className="cardsAmountButton" onClick={() => resetGame(32)}>32</button>
