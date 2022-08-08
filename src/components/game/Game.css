@@ -7,6 +7,7 @@
   display: grid;
   grid-template-columns: repeat(var(--colums), 1fr);
   margin: 1%;
+  margin-top: 3%;
   gap: 24px;
 }
 
@@ -26,19 +27,26 @@
 
 .buttonsContainer {
   position: absolute;
-  display: flex;
-  flex-direction: column;
   top: 12px;
-  right: 12px;
-  z-index: 1;
-  gap: 6px;
-  height: 32px;
-  overflow: hidden;
-  /* transition: all 2s; */
+  right: 40%;
 }
 
-.buttonsContainer:hover {
-  height: max-content;
+.playercoresContainer{
+  width: 90%;
+  height: 26px;
+  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.playercoresContainer div{
+  transition: all 0.5s ease;
+opacity: 0.6;
+}
+
+.playercoresContainer .choosen{
+  font-size: 24px;
+  opacity: 1;
 }
 
 .cardsText {
