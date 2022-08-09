@@ -1,0 +1,28 @@
+.fireworksContainer {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+}
+
+
+.fireworksText {
+  position: absolute;
+  font-family: inherit;
+  top: 50%;
+  right: 50%;
+}
+
+.endGameText{
+  font-size: 60px;
+  text-align: center;
+}
+
+.retryButton{
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 40px;
+}
