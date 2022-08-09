@@ -13,7 +13,7 @@ function Game(props) {
   const [catArr, setCatArr] = useState([])
   const [player, setPlayer] = useState(0)
   const [playerScores, setPlayerScores] = useState([0, 0])
-  const [endPage, setEndPage] = useState(true)
+  const [endPage, setEndPage] = useState(false)
 
 
   useEffect(() => {
@@ -80,7 +80,11 @@ function Game(props) {
 
   return (
     <>
-      {endPage && <EndGame resetClick={() => resetGame(8)} />}
+      {endPage &&
+        <EndGame
+          playerScores={playerScores}
+          resetClick={() => resetGame(8)}
+        />}
       <div style={{ opacity: endPage && 0.4 }} className="fullPageContainer">
         <div className="navbar">
           <div className={`${player === 0 ? "player choosen" : "player"}`}>player 1</div>
