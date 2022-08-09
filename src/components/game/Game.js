@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import "./Game.css";
 import Card from "../card/Card";
 import { cardsInformation } from "../../services/CardsInformation";
+import EndGame from "../EndGame/EndGame";
 
 
-function Game() {
+function Game(props) {
   const [twoCards, setTwoCards] = useState(false)
   const [info, setInfo] = useState({})
   const [score, setScore] = useState(0)
@@ -12,6 +13,9 @@ function Game() {
   const [catArr, setCatArr] = useState([])
   const [player, setPlayer] = useState(0)
   const [playerScores, setPlayerScores] = useState([0, 0])
+  const [endPage, setEndPage] = useState(false)
+
+
   useEffect(() => {
     fetch("https://cataas.com/api/cats?tags=cute")
       .then((res) => res.json())
@@ -60,8 +64,8 @@ function Game() {
 
     // end of the game
     cards.reduce((prev, curr) => prev + !curr.flip, 0) === 0 && setTimeout(() => {
-      console.log("done");
-    }, 1000);
+      setEndPage(true)
+    }, 800);
   }
 
   function resetGame(cardsNumber) {
@@ -71,35 +75,35 @@ function Game() {
     setCards(cardsInformation(cardsNumber / 2, catArr))
     setPlayerScores([0, 0])
     setPlayer(0)
+    setEndPage(false)
   }
 
   return (
-    <div className="fullPageContainer">
-      <div className="navbar">
-        {/* <span className="scoreboard">{score}</span> */}
-        <div className="playercoresContainer">
-        <div className={`${player === 0 ? "choosen" : ""}`}>player 1</div>
-        <div className={`${player === 1 ? "choosen" : ""}`}>player 2</div>
+    <>
+      {endPage && <EndGame resetClick={() => resetGame(8)} />}
+      <div style={{ opacity: endPage && 0.4 }} className="fullPageContainer">
+        <div className="navbar">
+          <div className={`${player === 0 ? "player choosen" : "player"}`}>player 1</div>
+          <div className="buttonsContainer">
+            <button className="cardsAmountButton" onClick={() => resetGame(8)}>8</button>
+            <button className="cardsAmountButton" onClick={() => resetGame(16)}>16</button>
+            <button className="cardsAmountButton" onClick={() => resetGame(32)}>32</button>
+          </div>
+          <div className={`${player === 1 ? "player choosen" : "player"}`}>player 2</div>
         </div>
-        <div className="buttonsContainer">
-          {/* <span className="cardsText">cards</span> */}
-          <button className="cardsAmountButton" onClick={() => resetGame(8)}>8</button>
-          <button className="cardsAmountButton" onClick={() => resetGame(16)}>16</button>
-          <button className="cardsAmountButton" onClick={() => resetGame(32)}>32</button>
+        <div className="cards" style={{ "--colums": cards.length === 32 && 8 }}>
+          {cards.map((info) =>
+            <Card
+              key={info.Key}
+              Key={info.Key}
+              name={info.name}
+              imageID={info.imageID}
+              flip={info.flip}
+              Onclick={(name, Key, flip) => printInfo(name, Key, flip)}
+            />)}
         </div>
       </div>
-      <div className="cards" style={{ "--colums": cards.length === 32 && 8 }}>
-        {cards.map((info) =>
-          <Card
-            key={info.Key}
-            Key={info.Key}
-            name={info.name}
-            imageID={info.imageID}
-            flip={info.flip}
-            Onclick={(name, Key, flip) => printInfo(name, Key, flip)}
-          />)}
-      </div>
-    </div>
+    </>
   )
 }
 
