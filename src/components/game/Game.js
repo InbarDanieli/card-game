@@ -13,7 +13,7 @@ function Game(props) {
   const [catArr, setCatArr] = useState([])
   const [player, setPlayer] = useState(0)
   const [playerScores, setPlayerScores] = useState([0, 0])
-  const [endPage, setEndPage] = useState(false)
+  const [endPage, setEndPage] = useState(true)
 
 
   useEffect(() => {
