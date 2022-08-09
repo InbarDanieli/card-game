@@ -5,24 +5,34 @@
   top: 0;
   left: 0;
   z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fireworksContainer canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 
 .fireworksText {
-  position: absolute;
-  font-family: inherit;
-  top: 50%;
-  right: 50%;
+  z-index: 2;
 }
 
-.endGameText{
+.endGameText {
+  user-select: none;
   font-size: 60px;
   text-align: center;
 }
 
-.retryButton{
-  background: none;
+.retryButton {
   border: none;
+  background: none;
+  cursor: pointer;
+  border-bottom: 1px solid black;
   font-family: inherit;
   font-size: 40px;
+  user-select: none;
 }
