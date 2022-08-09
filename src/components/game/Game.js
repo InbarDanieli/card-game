@@ -87,13 +87,13 @@ function Game(props) {
         />}
       <div style={{ opacity: endPage && 0.4 }} className="fullPageContainer">
         <div className="navbar">
-          <div className={`${player === 0 ? "player choosen" : "player"}`}>player 1</div>
+          <div className={`${player === 0 ? "player choosen" : "player"}`}>Player One - {playerScores[0]}</div>
           <div className="buttonsContainer">
             <button className="cardsAmountButton" onClick={() => resetGame(8)}>8</button>
             <button className="cardsAmountButton" onClick={() => resetGame(16)}>16</button>
             <button className="cardsAmountButton" onClick={() => resetGame(32)}>32</button>
           </div>
-          <div className={`${player === 1 ? "player choosen" : "player"}`}>player 2</div>
+          <div className={`${player === 1 ? "player choosen" : "player"}`}>Player Two - {playerScores[1]}</div>
         </div>
         <div className="cards" style={{ "--colums": cards.length === 32 && 8 }}>
           {cards.map((info) =>
