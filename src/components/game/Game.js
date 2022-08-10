@@ -22,7 +22,7 @@ function Game(props) {
       .then((res) => res.json())
       .then((res) => res.filter((cat) => !(cat.tags.includes("gif"))))
       .then((res) => { setCatArr(res); setCards(cardsInformation(cardAmount/2, res)) })
-  }, [])
+  }, [cardAmount])
 
   function flipCard(Key) {
     const cardIndex = cards.findIndex((value) => value.Key === Key)
