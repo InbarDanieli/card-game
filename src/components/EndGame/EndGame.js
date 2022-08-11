@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { Fireworks } from 'fireworks-js'
-import "./EndGame.css"
+import "./EndGame.scss"
 
 /**
   * @param {object} props 

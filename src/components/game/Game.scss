@@ -1,5 +1,5 @@
 :root {
-  --colums: 4
+  --colums: 4;
 }
 
 .fullPageContainer {
@@ -30,12 +30,12 @@
   opacity: 0.6;
   font-size: 18px;
   width: 20%;
-}
 
-.player.choosen {
-  font-size: 32px;
-  border-bottom: 1px solid black;
-  opacity: 1;
+  &.choosen {
+    font-size: 32px;
+    border-bottom: 1px solid black;
+    opacity: 1;
+  }
 }
 
 .cardsText {
@@ -43,32 +43,31 @@
 }
 
 .cardsAmountButton {
-  font-family: 'Roboto Mono', monospace;
+  font-family: "Roboto Mono", monospace;
   background: none;
   font-size: 20px;
   padding: 8px 30px 8px;
   border: 1px solid black;
   cursor: pointer;
   position: relative;
-}
 
-.cardsAmountButton::after {
-  content: "";
-  background-color: rgb(183, 224, 237);
-  width: 100%;
-  z-index: -1;
-  position: absolute;
-  height: 100%;
-  top: 4px;
-  left: 4px;
-  transition: 0.2s;
-}
+  &::after {
+    content: "";
+    background-color: rgb(183, 224, 237);
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+    height: 100%;
+    top: 4px;
+    left: 4px;
+    transition: 0.2s;
+  }
 
-.cardsAmountButton:hover::after {
-  top: 0px;
-  left: 0px;
+  &:hover::after {
+    top: 0px;
+    left: 0px;
+  }
 }
-
 
 @media screen and (max-width: 600px) {
   .cards {
@@ -77,5 +76,4 @@
     padding: 12px;
     grid-template-columns: repeat(4, 1fr);
   }
-
 }
