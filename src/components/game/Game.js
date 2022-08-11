@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./Game.css";
+import "./Game.scss";
 import Card from "../card/Card";
 import { cardsInformation } from "../../services/CardsInformation";
 import EndGame from "../EndGame/EndGame";
