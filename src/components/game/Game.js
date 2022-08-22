@@ -15,14 +15,43 @@ function Game(props) {
   const [playerScores, setPlayerScores] = useState([0, 0])
   const [endPage, setEndPage] = useState(false)
   const [cardAmount, setCardAmount] = useState(8)
+  const [isLoading, setLoading] = useState(false)
+  const [isreset, setReset] = useState(false)
 
+  // take this solution from https://shaquillegalimba.medium.com/how-to-import-multiple-images-in-react-1936efeeae7b
+  function importAll(r) {
+    let images = [];
+    r.keys().forEach((item, index) => { images[index] = { id: r(item) } });
+    return images
+  }
 
   useEffect(() => {
+    setLoading(true)
     fetch("https://cataas.com/api/cats?tags=cute")
       .then((res) => res.json())
       .then((res) => res.filter((cat) => !(cat.tags.includes("gif"))))
-      .then((res) => { setCatArr(res); setCards(cardsInformation(cardAmount/2, res)) })
-  }, [cardAmount])
+      .then((res) => res.map((cat) => ({ ...cat, id: `https://cataas.com/cat/${cat.id}` })))
+      .catch((error) => {
+        return importAll(require.context('../../assets/cats-images', false, /\.(png|jpe?g|svg)$/));
+      })
+      .then((res) => {
+        setCatArr(res);
+      })
+      .finally(() => setLoading(false))
+  }, [])
+
+  useEffect(() => {
+    if (catArr.length !== 0) {
+      setCards(cardsInformation(cardAmount / 2, catArr))
+    }
+    setInfo({})
+    setScore(0)
+    setTwoCards(false)
+    setPlayerScores([0, 0])
+    setPlayer(0)
+    setEndPage(false)
+  }, [cardAmount, catArr, isreset])
+
 
   function flipCard(Key) {
     const cardIndex = cards.findIndex((value) => value.Key === Key)
@@ -69,33 +98,24 @@ function Game(props) {
     }, 800);
   }
 
-  function resetGame(cardsNumber) {
-    setInfo({})
-    setScore(0)
-    setTwoCards(false)
-    setCards(cardsInformation(cardsNumber / 2, catArr))
-    setPlayerScores([0, 0])
-    setPlayer(0)
-    setEndPage(false)
-  }
-
   return (
     <>
       {endPage &&
         <EndGame
           playerScores={playerScores}
-          resetClick={() => resetGame(cardAmount)}
+          resetClick={() => setReset(!isreset)}
         />}
       <div style={{ opacity: endPage && 0.4 }} className="fullPageContainer">
-        <div className="navbar">
+        <div className="navbar" style={{ display: `${isLoading ? "none" : ""}` }}>
           <div className={`${player === 0 ? "player choosen" : "player"}`}>Player One - {playerScores[0]}</div>
           <div className="buttonsContainer">
-            <button className="cardsAmountButton" onClick={() => {resetGame(8); setCardAmount(8)}}>8</button>
-            <button className="cardsAmountButton" onClick={() => {resetGame(16); setCardAmount(16)}}>16</button>
-            <button className="cardsAmountButton" onClick={() =>  {resetGame(32); setCardAmount(32)}}>32</button>
+            <button className="cardsAmountButton" onClick={() => { setReset(!isreset); setCardAmount(8) }}>8</button>
+            <button className="cardsAmountButton" onClick={() => { setReset(!isreset); setCardAmount(16) }}>16</button>
+            <button className="cardsAmountButton" onClick={() => { setReset(!isreset); setCardAmount(32) }}>32</button>
           </div>
           <div className={`${player === 1 ? "player choosen" : "player"}`}>Player Two - {playerScores[1]}</div>
         </div>
+        {isLoading && <div className="loading"><p>loading...</p></div>}
         <div className="cards" style={{ "--colums": cards.length === 32 && 8 }}>
           {cards.map((info) =>
             <Card
