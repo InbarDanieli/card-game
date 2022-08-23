@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Game.scss";
 import Card from "../card/Card";
 import { cardsInformation } from "../../services/CardsInformation";
+import { getCatsImages } from "../../services/CatAPI";
 import EndGame from "../EndGame/EndGame";
 
 
@@ -18,22 +19,9 @@ function Game(props) {
   const [isLoading, setLoading] = useState(false)
   const [isreset, setReset] = useState(false)
 
-  // take this solution from https://shaquillegalimba.medium.com/how-to-import-multiple-images-in-react-1936efeeae7b
-  function importAll(r) {
-    let images = [];
-    r.keys().forEach((item, index) => { images[index] = { id: r(item) } });
-    return images
-  }
-
   useEffect(() => {
     setLoading(true)
-    fetch("https://cataas.com/api/cats?tags=cute")
-      .then((res) => res.json())
-      .then((res) => res.filter((cat) => !(cat.tags.includes("gif"))))
-      .then((res) => res.map((cat) => ({ ...cat, id: `https://cataas.com/cat/${cat.id}` })))
-      .catch((error) => {
-        return importAll(require.context('../../assets/cats-images', false, /\.(png|jpe?g|svg)$/));
-      })
+    getCatsImages()
       .then((res) => {
         setCatArr(res);
       })
