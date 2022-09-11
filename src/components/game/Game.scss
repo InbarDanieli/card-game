@@ -4,25 +4,63 @@
 
 .fullPageContainer {
   transition: opacity 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100vh;
 }
 
 .cards {
-  height: 85vh;
   display: grid;
   grid-template-columns: repeat(var(--colums), 1fr);
-  margin: 1%;
-  margin-top: 3%;
   gap: 24px;
+  height: 80vh;
+  padding: 12px;
 }
 
 .navbar {
   display: flex;
-  flex-direction: row;
-  padding: 12px 20px;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  font-size: 24px;
+  justify-content: space-around;
+  height: 10vh;
+  .player {
+    transition: all 0.8s ease;
+    opacity: 0.6;
+    width: 30%;
+    font-size: 2.5vh;
+    &.choosen {
+      opacity: 1;
+      font-size: 4vh;
+    }
+  }
+
+  .cardsAmountButton {
+    font-family: "Roboto Mono", monospace;
+    background: none;
+    width: 30%;
+    font-size: 2.6vh;
+    padding: 1vh 2vh 1vh;
+    border: 1px solid black;
+    cursor: pointer;
+    position: relative;
+
+    &::after {
+      content: "";
+      background-color: rgb(183, 224, 237);
+      width: 100%;
+      z-index: -1;
+      position: absolute;
+      height: 100%;
+      top: 0.8vh;
+      left: 0.8vh;
+      transition: 0.2s;
+    }
+
+    &:hover::after {
+      top: 0px;
+      left: 0px;
+    }
+  }
 }
 
 .loading {
@@ -33,55 +71,20 @@
   justify-content: center;
 }
 
-.player {
-  transition: all 0.5s ease;
-  opacity: 0.6;
-  font-size: 18px;
-  width: 20%;
-
-  &.choosen {
-    font-size: 32px;
-    border-bottom: 1px solid black;
-    opacity: 1;
-  }
-}
-
-.cardsText {
-  border-bottom: 2px solid black;
-}
-
-.cardsAmountButton {
-  font-family: "Roboto Mono", monospace;
-  background: none;
-  font-size: 20px;
-  padding: 8px 30px 8px;
-  border: 1px solid black;
-  cursor: pointer;
-  position: relative;
-
-  &::after {
-    content: "";
-    background-color: rgb(183, 224, 237);
-    width: 100%;
-    z-index: -1;
-    position: absolute;
-    height: 100%;
-    top: 4px;
-    left: 4px;
-    transition: 0.2s;
-  }
-
-  &:hover::after {
-    top: 0px;
-    left: 0px;
-  }
-}
-
 @media screen and (max-width: 600px) {
   .cards {
-    height: 80vh;
-    gap: 16px;
-    padding: 12px;
     grid-template-columns: repeat(4, 1fr);
+    gap: 3vh;
+  }
+  .navbar {
+    .player {
+      font-size: 1.7vh;
+      &.choosen {
+        font-size: 2.4vh;
+      }
+    }
+    .cardsAmountButton {
+      border: 0.2vh solid black;
+    }
   }
 }
