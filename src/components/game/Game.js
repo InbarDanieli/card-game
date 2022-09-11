@@ -97,9 +97,9 @@ function Game(props) {
         <div className="navbar" style={{ display: `${isLoading ? "none" : ""}` }}>
           <div className={`${player === 0 ? "player choosen" : "player"}`}>Player One - {playerScores[0]}</div>
           <div className="buttonsContainer">
-            <button className="cardsAmountButton" onClick={() => { setReset(!isreset); setCardAmount(8) }}>8</button>
-            <button className="cardsAmountButton" onClick={() => { setReset(!isreset); setCardAmount(16) }}>16</button>
-            <button className="cardsAmountButton" onClick={() => { setReset(!isreset); setCardAmount(32) }}>32</button>
+            <button card-amount="8" className={`cardsAmountButton ${cardAmount === 8 && "choosen"}`} onClick={() => { setReset(!isreset); setCardAmount(8) }}>8</button>
+            <button card-amount="16" className={`cardsAmountButton ${cardAmount === 16 && "choosen"}`} onClick={() => { setReset(!isreset); setCardAmount(16) }}>16</button>
+            <button card-amount="32" className={`cardsAmountButton ${cardAmount === 32 && "choosen"}`} onClick={() => { setReset(!isreset); setCardAmount(32) }}>32</button>
           </div>
           <div className={`${player === 1 ? "player choosen" : "player"}`}>Player Two - {playerScores[1]}</div>
         </div>
