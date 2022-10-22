@@ -12,9 +12,10 @@ export async function getCatsImages() {
   const response = await fetch("https://cataas.com/api/cats?tags=cute", { signal: controller.signal })
     .then((res) => res.json())
     .then((res) => res.filter((cat) => !(cat.tags.includes("gif"))))
-    .then((res) => res.map((cat) => ({ ...cat, id: `https://cataas.com/cat/${cat.id}` })))
+    .then((res) => res.map((cat) => ({ ...cat, id: `https://cataas.com/cat/${cat._id}` })))
     .catch(() => importAll(require.context('../assets/cats-images', false, /\.(png|jpe?g|svg)$/)))
-  
-    clearTimeout(id);
+
+  clearTimeout(id);
+
   return response
 }
