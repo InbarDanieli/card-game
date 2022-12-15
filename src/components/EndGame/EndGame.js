@@ -16,7 +16,6 @@ function EndGame(props) {
   }, [myref])
   useEffect(() => {
     if (fireworks) {
-      console.log(fireworks);
       fireworks?.start()
     }
   }, [fireworks])
