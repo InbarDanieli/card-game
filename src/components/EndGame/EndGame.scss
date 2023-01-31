@@ -4,34 +4,32 @@
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 2;
   display: flex;
-  align-items: center;
-  justify-content: center;
 
-  canvas{
+  canvas {
     position: absolute;
     top: 0;
     left: 0;
   }
 }
 
-.fireworksText {
+.fireworksTextContainer {
   z-index: 2;
+  margin: auto;
 }
 
 .endGameText {
   user-select: none;
   font-size: 60px;
-  text-align: center;
+  font-weight: 700;
 }
 
 .retryButton {
-  border: none;
   background: none;
-  cursor: pointer;
+  border: none;
   border-bottom: 1px solid black;
   font-family: inherit;
   font-size: 40px;
   user-select: none;
+  cursor: pointer;
 }

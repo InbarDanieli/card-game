@@ -1,6 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+*{
+  box-sizing: border-box;
+  padding: 0;
+}
 
 .App {
   text-align: center;
-  font-family: 'Roboto Mono', monospace;
+  font-family: 'Kalam', cursive;
 }
