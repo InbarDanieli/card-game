@@ -1,35 +1,35 @@
 :root {
   --colums: 4;
-  --smaller-screen-colums: 4
+  --smaller-screen-colums: 4;
 }
 
 .fullPageContainer {
-  transition: opacity 0.4s ease;
+  height: 100%;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  height: 100%;
-  width: 100vw;
+  transition: opacity 0.4s ease;
 }
 
 .cards {
+  height: 88vh;
+  padding: 12px;
   display: grid;
   grid-template-columns: repeat(var(--colums), 1fr);
   gap: 24px;
-  height: 80vh;
-  padding: 12px;
 }
 
 .navbar {
+  height: 10vh;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  height: 10vh;
   .player {
-    transition: all 0.8s ease;
-    opacity: 0.6;
     width: 30%;
+    opacity: 0.6;
     font-size: 2.5vh;
+    transition: all 0.8s ease;
     user-select: none;
     &.choosen {
       opacity: 1;
@@ -38,25 +38,26 @@
   }
 
   .cardsAmountButton {
-    font-family: "Roboto Mono", monospace;
-    background: none;
     width: 30%;
-    font-size: 2.6vh;
+    position: relative;
     padding: 1vh 2vh 1vh;
     border: 1px solid black;
+    background: none;
+    font-family: "Kalam", cursive;
+    font-weight: 400;
+    font-size: 2.6vh;
     cursor: pointer;
-    position: relative;
 
     &::after {
       content: "";
-      background-color: rgb(183, 224, 237);
-      width: 100%;
-      z-index: -1;
-      position: absolute;
       height: 100%;
-      top: 0.8vh;
-      left: 0.8vh;
+      width: 100%;
+      background-color: rgb(183, 224, 237);
+      position: absolute;
+      top: 0.5vh;
+      left: 0.4vh;
       transition: 0.2s;
+      z-index: -1;
     }
 
     &:hover::after {
@@ -64,6 +65,10 @@
       left: 0px;
     }
   }
+}
+
+.cardsAmountButton + .cardsAmountButton {
+  margin-left: 4px;
 }
 
 .loading {

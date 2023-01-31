@@ -31,7 +31,7 @@ function EndGame(props) {
   }
   return (
     <div className='fireworksContainer' ref={myref}>
-      <div className='fireworksText'>
+      <div className='fireworksTextContainer'>
         <p className='endGameText'>{winner}</p>
         <button className='retryButton' onClick={() => props.resetClick()}>retry?</button>
       </div>
