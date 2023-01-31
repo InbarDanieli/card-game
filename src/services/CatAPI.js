@@ -7,7 +7,7 @@ function importAll(r) {
 
 export async function getCatsImages() {
   const controller = new AbortController();
-  const id = setTimeout(() => controller.abort(), 8000);
+  const id = setTimeout(() => controller.abort(), 6000);
 
   const response = await fetch("https://cataas.com/api/cats?tags=cute&limit=100", { signal: controller.signal })
     .then((res) => res.json())
